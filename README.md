@@ -30,7 +30,7 @@ v Writing 'doc/analysis.Rmd'
 Add this target to your drake plan:
 
 target_name = target(rmarkdown::render(knitr_in("doc/analysis.Rmd")),
-                     file_out("doc/analysis.html")
+                     file_out("doc/analysis.html"))
 
 (change output extension as appropriate if output is not html)
 ```
