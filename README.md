@@ -22,6 +22,20 @@ An opinionated lightweight template for smooth `drake` flows.
 
 ```
 
+`dflow::use_rmd("analysis.Rmd")`:
+
+```
+v Creating 'doc/'
+v Writing 'doc/analysis.Rmd'
+Add this target to your drake plan:
+
+target_name = target(rmarkdown::render(knitr_in("doc/analysis.Rmd")),
+                     file_out("doc/analysis.html")
+
+(change output extension as appropriate if output is not html)
+```
+
+
 ## About
 
 `dflow` tries to set up a minimalist ergonomic workflow for `drake` pipeline development. To get the most out of it follow these tips:
