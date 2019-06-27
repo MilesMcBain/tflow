@@ -29,7 +29,7 @@ rmd_target <- function(file_path) {
   glue::glue("Add this target to your drake plan:\n",
              "\n",
              "target_name = target(rmarkdown::render(knitr_in(\"{target_file}\")),\n",
-             "                     file_out(\"{target_file_prefix}.html\")\n",
+             "                     file_out(\"{target_file_prefix}.html\"))\n",
              "\n",
              "(change output extension as appropriate if output is not html)")
 }
