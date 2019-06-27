@@ -14,35 +14,16 @@ use_dflow <- function(){
 
 ##' Generate a target for an R markdown file
 ##'
-##' Due to the way RMarkdown and Knitr use relative paths to the source document
-##' it can be messy to properly tag the input and output documents for an Rmd target. This
-##' function will generate a multi-expression target using `drake::target()`
-##' that uses a clean and simple way to mark these up for drake.
-##'
-##' The contents of the `file_out()` call my need to be modified depending on
-##' the output file extension and path configured in the Rmd and call to `render()`.
-##'
 ##' @title use_rmd_target
-##' @param target_file 
+##' @param file_path a file to generate target text for.
 ##' @return target text to the console.
 ##' @author Miles McBain
-use_rmd_target <- function(target_file = NULL) {
+rmd_target <- function(file_path) {
 
-  if (is.null(target_file)) {
-
-    rmd_files <- list.files(path = ".",
-                            pattern="rmd$",
-                            recursive = TRUE,
-                            ignore.case = TRUE,
-                            include.dirs = TRUE)
-
-    choice <- menu(title = "Select an rmd file to make a target", choices = rmd_files)
-    target_file <- rmd_files[choice]
-  }
-
+  target_file <- file_path
   target_file_prefix <- gsub(pattern = "\\.[rmd]{3}$",
                              replacement = "",
-                             x = target_file,
+                             x = file_path,
                              ignore.case = TRUE)
 
   glue::glue("Add this target to your drake plan:\n",
@@ -53,4 +34,47 @@ use_rmd_target <- function(target_file = NULL) {
              "(change output extension as appropriate if output is not html)")
 }
 
+##' Create an RMarkdown file and generate target definition code.
+##'
+##' The generated document defaults to the "./doc" folder. This can be overridden
+##' with option 'dflow.report_dir'.
+##'
+##' Due to the way RMarkdown and Knitr use relative paths to the source document
+##' it can be messy to properly tag the input and output documents for an Rmd target. This
+##' function will generate a multi-expression target using `drake::target()`
+##' that uses a clean and simple way to mark these up for drake.
+##'
+##' The contents of the `file_out()` call my need to be modified depending on
+##' the output file extension and path configured in the Rmd and call to `render()`.
+##'
+##' @title use_rmd
+##' @param target_file a filename for the generated R markdown document.
+##' @return the path of the file created. (invisibly)
+##' @export
+##' @author Miles McBain
+use_rmd <- function(target_file) {
 
+  report_dir <- getOption('dflow.report_dir') %||% "doc"
+  file_path <- file.path(report_dir, target_file)
+
+  if (file.exists(file_path)) {
+    message(file_path, " already exists and was not overwritten.")
+    message(rmd_target(file_path))
+    return(invisible(file_path))
+  }
+
+  if (!dir.exists(report_dir)) usethis::use_directory(report_dir)
+
+  usethis::use_template("blank.rmd",
+                        save_as = file_path,
+                        package = "dflow")
+
+  message(rmd_target(file_path))
+
+ invisible(file_path)
+
+}
+
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
