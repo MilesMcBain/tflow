@@ -28,8 +28,12 @@ rmd_target <- function(file_path) {
 
   glue::glue("Add this target to your drake plan:\n",
              "\n",
-             "target_name = target(rmarkdown::render(knitr_in(\"{target_file}\")),\n",
-             "                     file_out(\"{target_file_prefix}.html\"))\n",
+             "target_name = target(\n",
+             "  command = {{\n",
+             "    rmarkdown::render(knitr_in(\"{target_file}\")),\n",
+             "    file_out(\"{target_file_prefix}.html\")\n",
+             "  }}\n",
+             ")\n",
              "\n",
              "(change output extension as appropriate if output is not html)")
 }
@@ -53,6 +57,13 @@ rmd_target <- function(file_path) {
 ##' @export
 ##' @author Miles McBain
 use_rmd <- function(target_file) {
+
+  ## add an .Rmd extension if it was not specified
+  if (!grepl("\\.Rmd$",
+             target_file,
+             ignore.case = FALSE)) {
+    target_file <- paste0(target_file, ".Rmd")
+  }
 
   report_dir <- getOption('dflow.report_dir') %||% "doc"
   file_path <- file.path(report_dir, target_file)
