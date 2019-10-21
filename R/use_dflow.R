@@ -97,12 +97,14 @@ use_rmd <- function(target_file) {
 ##' @export
 use_gitignore <- function() {
 
-  if (!file.exists("./.gitignore")) {
+  if (file.exists("./.gitignore")) {
+    message("./.gitignore file already exists and was not overwritten.")
+    invisible(return(NULL))
+  }
+
     usethis::use_template(template = "_gitignore",
                           package = "dflow",
                           save_as = ".gitignore")
-
-  }
 
 }
 
