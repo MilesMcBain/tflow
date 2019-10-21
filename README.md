@@ -39,6 +39,11 @@ target_name = target(
 (change output extension as appropriate if output is not html)
 ```
 
+`dflow::use_gitignore()`:
+
+Drop in a starter `./.gitignore` with ignores for `drake` and `renv` among others.
+
+
 
 ## About
 
