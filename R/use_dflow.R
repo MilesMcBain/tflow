@@ -86,6 +86,27 @@ use_rmd <- function(target_file) {
 
 }
 
+##' Use a starter .gitignore
+##'
+##' Drop a starter .gitignore in the current working directory, including
+##' ignores for drake and capsule (renv).
+##'
+##' @title use_gitignore
+##' @return nothing, creates a file.
+##' @author Miles McBain
+##' @export
+use_gitignore <- function() {
+
+  if (!file.exists("./.gitignore")) {
+    usethis::use_template(template = "_gitignore",
+                          package = "dflow",
+                          save_as = ".gitignore")
+
+  }
+
+}
+
+
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }

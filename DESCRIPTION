@@ -10,9 +10,11 @@ LazyData: true
 Imports: 
     usethis,
     fnmate,
-    glue
+    glue,
 Suggests: 
     drake
-Remotes:
-    milesmcbain/fnmate
+    capsule
+Remotes: 
+    milesmcbain/fnmate,
+    milesmcbain/capsule
 RoxygenNote: 6.1.1
