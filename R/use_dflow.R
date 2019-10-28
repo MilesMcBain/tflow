@@ -30,7 +30,7 @@ rmd_target <- function(file_path) {
              "\n",
              "target_name = target(\n",
              "  command = {{\n",
-             "    rmarkdown::render(knitr_in(\"{target_file}\")),\n",
+             "    rmarkdown::render(knitr_in(\"{target_file}\"))\n",
              "    file_out(\"{target_file_prefix}.html\")\n",
              "  }}\n",
              ")\n",
