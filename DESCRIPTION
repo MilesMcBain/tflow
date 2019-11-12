@@ -11,6 +11,8 @@ Imports:
     usethis,
     fnmate,
     glue,
+    readr,
+    cli
 Suggests: 
     drake,
     capsule

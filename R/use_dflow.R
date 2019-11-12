@@ -10,6 +10,7 @@ use_dflow <- function(){
   usethis::use_template("packages.R", package = "dflow")
   usethis::use_template("_drake.R", package = "dflow")
   usethis::use_template("plan.R", save_as = "/R/plan.R", package = "dflow")
+  usethis::use_template(".env", package = "dflow")
 }
 
 ##' Generate a target for an R markdown file
@@ -81,6 +82,13 @@ use_rmd <- function(target_file) {
                         package = "dflow")
 
   message(rmd_target(file_path))
+
+  if (file.exists("./packages.R") && !contains_rmarkdown("./packages.R")) {
+    packages <- readr::read_lines("./packages.R")
+    packages <- c(packages, "library(rmarkdown)")
+    readr::write_lines(packages, "./packages.R")
+    message(cli::symbol$tick," Writing 'library(rmarkdown)' to './packages.R'")
+  }
 
  invisible(file_path)
 

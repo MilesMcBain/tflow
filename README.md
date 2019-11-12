@@ -15,10 +15,11 @@ An opinionated lightweight template for smooth `drake` flows.
 
  ./
  |_ R/
-    |_ plan.R
+ |  |_ plan.R
  |
  |_ _drake.R
  |_ packages.R
+ |_ .env
 
 ```
 
@@ -37,6 +38,7 @@ target_name = target(
 )
 
 (change output extension as appropriate if output is not html)
+library(rmarkdown) added to ./packages.R
 ```
 
 `dflow::use_gitignore()`:
@@ -47,7 +49,8 @@ Drop in a starter `./.gitignore` with ignores for `drake` and `renv` among other
 
 ## About
 
-`dflow` tries to set up a minimalist ergonomic workflow for `drake` pipeline development. To get the most out of it follow these tips:
+`dflow` tries to set up a minimalist ergonomic workflow for `drake` pipeline
+development. To get the most out of it follow these tips:
 
 1. Put all your target code in separate functions in `R/`. Use `fnmate` to
    quickly generate function definitions in the right place. Let `plan.R` define
@@ -64,3 +67,17 @@ Drop in a starter `./.gitignore` with ignores for `drake` and `renv` among other
 
 4. Take advantage of automation for loading drake targets at the cursor with the
    'loadd target at cursor' addin.
+
+## Opinions
+
+Some things are baked into the template that will help you avoid common pitfalls
+and make your project more reproducible:
+
+1. `library(conflicted)` is called in `packages.R` to detect package masking issues.
+
+2. `.env` is added carrying the following options to avoid misuse of logical vector tests:
+
+```
+_R_CHECK_LENGTH_1_LOGIC2_=true
+_R_CHECK_LENGTH_1_CONDITION_=verbose
+```
