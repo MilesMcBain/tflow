@@ -78,6 +78,6 @@ and make your project more reproducible:
 2. `.env` is added carrying the following options to avoid misuse of logical vector tests:
 
 ```
-_R_CHECK_LENGTH_1_LOGIC2_=true
-_R_CHECK_LENGTH_1_CONDITION_=verbose
+_R_CHECK_LENGTH_1_LOGIC2_=verbose
+_R_CHECK_LENGTH_1_CONDITION_=true
 ```
