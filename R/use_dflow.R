@@ -77,7 +77,7 @@ use_rmd <- function(target_file) {
 
   if (!dir.exists(report_dir)) usethis::use_directory(report_dir)
 
-  usethis::use_template("blank.rmd",
+  usethis::use_template("blank.Rmd",
                         save_as = file_path,
                         package = "dflow")
 
