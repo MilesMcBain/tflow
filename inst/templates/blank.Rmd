@@ -13,9 +13,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Reproducibility
 
+<details><summary>Reproducibility receipt</summary>
+
 ```{r}
 ## datetime
-Sys.time() 
+Sys.time()
 
 ## repository
 git2r::repository()
@@ -23,3 +25,5 @@ git2r::repository()
 ## session info
 sessionInfo()
 ```
+
+</details>
