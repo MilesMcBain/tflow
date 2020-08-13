@@ -14,8 +14,10 @@ Imports:
     readr,
     cli
 Suggests: 
-    drake,
-    capsule
+    conflicted,
+    capsule,
+    dotenv,
+    drake
 Remotes: 
     milesmcbain/fnmate,
     milesmcbain/capsule

@@ -4,15 +4,17 @@ An opinionated lightweight template for smooth `drake` flows.
 
 ## Installation
 
-`remotes::install_github("milesmcbain/dflow")`
+```r
+remotes::install_github("milesmcbain/dflow")
+```
+
+Set `dependencies = TRUE` to also install [capsule](https://github.com/MilesMcBain/capsule), [conflicted](https://github.com/r-lib/conflicted), [dontenv](https://github.com/gaborcsardi/dotenv), and [drake](https://docs.ropensci.org/drake).
 
 ## Usage
 
 `dflow::use_dflow()`:
 
 ```
-
-
  ./
  |_ R/
  |  |_ plan.R
@@ -20,7 +22,6 @@ An opinionated lightweight template for smooth `drake` flows.
  |_ _drake.R
  |_ packages.R
  |_ .env
-
 ```
 
 `dflow::use_rmd("analysis.Rmd")`:
