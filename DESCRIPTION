@@ -3,7 +3,7 @@ Title: Setup a project in the tflow style for using the targets package
 Version: 0.0.0.9000
 Authors@R: person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre"))
 Description: Has a function that sets up an R workflow in the dflow style, using targets.
-Depends: R (>= 3.5.3)
+Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -7,7 +7,7 @@
 rmd_target(target_name)
 }
 \arguments{
-\item{name}{of a target to generate rmd target for.}
+\item{target_name}{of a target to generate rmd target for.}
 }
 \value{
 target text to the console.

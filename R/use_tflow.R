@@ -15,7 +15,7 @@ use_tflow <- function(){
 ##' Generate a target for an R markdown file
 ##'
 ##' @title rmd_target
-##' @param name of a target to generate rmd target for.
+##' @param target_name of a target to generate rmd target for.
 ##' @return target text to the console.
 ##' @author Miles McBain
 rmd_target <- function(target_name) {
