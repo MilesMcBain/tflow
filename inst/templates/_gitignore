@@ -35,9 +35,8 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 
-# drake
-.drake
-.drake_history
+# targets
+_targets/
 
 # html
 *.html

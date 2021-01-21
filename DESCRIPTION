@@ -1,8 +1,8 @@
-Package: dflow
-Title: Setup a project in the dflow style for using the drake
+Package: tflow
+Title: Setup a project in the tflow style for using the targets package
 Version: 0.0.0.9000
 Authors@R: person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre"))
-Description: Has a function that sets up an R workflow in the dflow style, using drake.
+Description: Has a function that sets up an R workflow in the dflow style, using targets.
 Depends: R (>= 3.5.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -17,8 +17,9 @@ Suggests:
     conflicted,
     capsule,
     dotenv,
-    drake
+    targets,
+    tarchetypes
 Remotes: 
     milesmcbain/fnmate,
     milesmcbain/capsule
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
