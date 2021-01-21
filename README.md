@@ -59,6 +59,8 @@ development. To get the most out of it follow these tips:
    in one place when you go to add sandboxing with `renv`, `packarat`, and
    `switchr` etc.
 
+4. Take advantage of automation for loading `targets` targets at the cursor with the 'loadd target at cursor' addin.
+
 ## Opinions
 
 Some things are baked into the template that will help you avoid common pitfalls
