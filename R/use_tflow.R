@@ -24,7 +24,7 @@ rmd_target <- function(target_name) {
 
   glue::glue("Add this target to your tar_plan():\n",
              "\n",
-             "tar_render({target_name}, \"{file.path(report_dir, paste(target_name, '.Rmd', sep = '.'))}\")\n"
+             "tar_render({target_name}, \"{file.path(report_dir, paste(target_name, 'Rmd', sep = '.'))}\")\n"
   )
 }
 
