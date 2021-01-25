@@ -47,7 +47,7 @@ use_rmd <- function(target_name) {
 
   if (file.exists(file_path)) {
     message(file_path, " already exists and was not overwritten.")
-    message(rmd_target(file_path))
+    message(rmd_target(target_name))
     return(invisible(file_path))
   }
 
