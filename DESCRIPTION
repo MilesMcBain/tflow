@@ -20,7 +20,9 @@ Suggests:
     capsule,
     dotenv,
     targets,
-    tarchetypes
+    tarchetypes,
+    withr,
+    here
 Remotes: 
     milesmcbain/fnmate,
     milesmcbain/capsule
