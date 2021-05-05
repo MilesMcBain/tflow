@@ -8,7 +8,20 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ## target knits Rmds in their own session, so load libraries here.
-## source("../packages.R")
+## source("here::here(packages.R"))
+```
+
+```{r load-targets, include=FALSE}
+## Using the following form ensures that tar_load() works when running code
+## chunks as well as rendering this document with tar_make() or by clicking the
+## "knit" button.
+# withr::with_dir(here::here(), {
+#   tar_load(c(
+#     target_1, 
+#     target_2,
+#     target_3
+#   ))
+# })
 ```
 
 ## Analysis
