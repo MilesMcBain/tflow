@@ -12,16 +12,16 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r load-targets, include=FALSE}
-## Using the following form ensures that tar_load() works when running code
-## chunks as well as rendering this document with tar_make() or by clicking the
-## "knit" button.
+# tar_load(c(target_1, target_2, target_3))
+
+# # If your chunk output is shown in-line, then you'll need to wrap tar_load()
+# # like so:
+# 
 # withr::with_dir(here::here(), {
-#   tar_load(c(
-#     target_1, 
-#     target_2,
-#     target_3
-#   ))
+#   tar_load(c(target_1, target_2, target_3))
 # })
+# 
+# # This is not needed when using tar_make() to render the document.
 ```
 
 ## Analysis
