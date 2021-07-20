@@ -1,6 +1,6 @@
 Package: tflow
 Title: Setup a project in the tflow style for using the targets package
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre"))
 Description: Has a function that sets up an R workflow in the dflow style, using targets.
 Depends: R (>= 3.5.0)
@@ -12,7 +12,9 @@ Imports:
     fnmate,
     glue,
     readr,
-    cli
+    cli,
+    rstudioapi,
+    sourcetools
 Suggests: 
     conflicted,
     capsule,

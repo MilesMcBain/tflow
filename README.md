@@ -59,7 +59,7 @@ development. To get the most out of it follow these tips:
    in one place when you go to add sandboxing with `renv`, `packarat`, and
    `switchr` etc.
 
-4. Take advantage of automation for loading `targets` targets at the cursor with the 'loadd target at cursor' addin.
+4. Take advantage of automation for loading `targets` targets at the cursor with the 'load target at cursor' addin. Or the `tflow` addin: 'load editor targets' to load all targets referred to in the current editor.
 
 ## Opinions
 

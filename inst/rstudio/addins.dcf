@@ -1,0 +1,5 @@
+Name: Load editor targets
+Description: tar_load() targets referred to in current editor from cache 
+Binding: rs_load_current_editor_targets
+Interactive: false
+
