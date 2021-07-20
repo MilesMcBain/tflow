@@ -17,11 +17,15 @@ rs_load_current_editor_targets <- function() {
   local_symbols <- get_current_editor_symbols()
   project_targets <- targets::tar_meta(targets_only = TRUE)$name
   local_targets <- intersect(local_symbols, project_targets)
+  load_targets <-
+    lapply(
+      local_targets,
+      function(x) bquote(targets::tar_load(.(as.symbol(x)), envir = load_env))
+    )
   loaded_targets <-
-    lapply(local_targets, function(x) bquote(targets::tar_load(.(as.symbol(x)), envir = load_env))) %>%
-    lapply(function(x) {
-      eval(x)
-      format(x)
-    })
+    lapply(load_targets, function(x) {
+    eval(x)
+    format(x)
+  })
   cat(paste0(unlist(loaded_targets), collapse = "\n"), "\n")
 }
