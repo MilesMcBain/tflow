@@ -43,7 +43,7 @@ Drop in a starter `./.gitignore` with ignores for `drake` and `renv` among other
 
 ## About
 
-`tflow` is a port of `dflow` from `targets` to `drake`. `targets` can be used many ways, and it turns out it can be used in an almost identical workflow to `dflow`. 
+`tflow` is a port of `dflow` from `drake` to `targets`. `targets` can be used many ways, and it turns out it can be used in an almost identical workflow to `dflow`. 
 
 `tflow` tries to set up a minimalist ergonomic workflow for `targets` pipeline
 development. To get the most out of it follow these tips:

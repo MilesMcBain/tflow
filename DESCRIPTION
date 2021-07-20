@@ -1,7 +1,9 @@
 Package: tflow
 Title: Setup a project in the tflow style for using the targets package
 Version: 0.1.0
-Authors@R: person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+   person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre")),
+   person("Shir", "Dekel", email = "shirdekel@yahoo.com.au", role = "ctb"))
 Description: Has a function that sets up an R workflow in the dflow style, using targets.
 Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
@@ -20,7 +22,9 @@ Suggests:
     capsule,
     dotenv,
     targets,
-    tarchetypes
+    tarchetypes,
+    withr,
+    here
 Remotes: 
     milesmcbain/fnmate,
     milesmcbain/capsule
