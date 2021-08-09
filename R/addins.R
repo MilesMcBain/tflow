@@ -24,8 +24,30 @@ rs_load_current_editor_targets <- function() {
     )
   loaded_targets <-
     lapply(load_targets, function(x) {
-    eval(x)
-    format(x)
-  })
+      eval(x)
+      format(x)
+    })
   cat(paste0(unlist(loaded_targets), collapse = "\n"), "\n")
+}
+
+#' @export
+#' @noRd
+tflow_load_all <- function() {
+  message("\nLoading `packages.R` and `R/*.R`")
+  if (file.exists("packages.R")) {
+    suppressPackageStartupMessages(source('packages.R'))
+  } else {
+    message("No `packages.R` found")
+  }
+  if(dir.exists("R") && length(list.files("R", pattern = "\\.[Rr]$"))) {
+    lapply(list.files("R", pattern = "\\.[Rr]$", full.names = TRUE), function(f) {
+      tryCatch(source(f),
+               error = function(e) {
+                 e$message <- paste0("Error in ", f, ": ", e$message)
+                 message(e)
+               })
+    })
+  } else {
+    message("No R source files found in R/ directory")
+  }
 }
