@@ -24,16 +24,16 @@ rs_load_current_editor_targets <- function() {
     )
   loaded_targets <-
     lapply(load_targets, function(x) {
-    eval(x)
-    format(x)
-  })
+      eval(x)
+      format(x)
+    })
   cat(paste0(unlist(loaded_targets), collapse = "\n"), "\n")
 }
 
 #' @export
 #' @noRd
 tflow_load_all <- function() {
-  message("Loading `packages.R` and `R/*.R`")
+  message("\nLoading `packages.R` and `R/*.R`")
   if (file.exists("packages.R")) {
     suppressPackageStartupMessages(source('packages.R'))
   } else {
@@ -45,14 +45,6 @@ tflow_load_all <- function() {
                error = function(e) {
                  e$message <- paste0("Error in ", f, ": ", e$message)
                  message(e)
-               },
-               warning = function(w) {
-                 w$message <- paste0("Warning in ", f, ": ", w$message)
-                 message(w)
-               },
-               message = function(m) {
-                 m$message <- paste0("Message in ", f, ": ", m$message)
-                 message(m)
                })
     })
   } else {
