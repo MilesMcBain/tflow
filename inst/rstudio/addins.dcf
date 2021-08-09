@@ -3,3 +3,8 @@ Description: tar_load() targets referred to in current editor from cache
 Binding: rs_load_current_editor_targets
 Interactive: false
 
+Name: Source `packages.R` and `R/*.R`
+Description: Sources worflow files. Package startup messages are suppressed, failures of individual files reported.
+Binding: tflow_load_all
+Interactive: false
+
