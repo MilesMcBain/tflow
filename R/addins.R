@@ -40,7 +40,12 @@ tflow_load_all <- function() {
     message("No `packages.R` found")
   }
   if(dir.exists("R") && length(list.files("R", pattern = "\\.[Rr]$"))) {
-    lapply(list.files("R", pattern = "\\.[Rr]$", full.names = TRUE), function(f) try(source(f)))
+    lapply(list.files("R", pattern = "\\.[Rr]$", full.names = TRUE), function(f) {
+      tryCatch(source(f), error = function(e) {
+        e$message <- paste0("In ", f, ": ", e$message)
+        message(e)
+      })
+    })
   } else {
     message("No R source files found in R/ directory")
   }
