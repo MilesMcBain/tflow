@@ -41,10 +41,19 @@ tflow_load_all <- function() {
   }
   if(dir.exists("R") && length(list.files("R", pattern = "\\.[Rr]$"))) {
     lapply(list.files("R", pattern = "\\.[Rr]$", full.names = TRUE), function(f) {
-      tryCatch(source(f), error = function(e) {
-        e$message <- paste0("In ", f, ": ", e$message)
-        message(e)
-      })
+      tryCatch(source(f),
+               error = function(e) {
+                 e$message <- paste0("Error in ", f, ": ", e$message)
+                 message(e)
+               },
+               warning = function(w) {
+                 w$message <- paste0("Warning in ", f, ": ", w$message)
+                 message(w)
+               },
+               message = function(m) {
+                 m$message <- paste0("Message in ", f, ": ", m$message)
+                 message(m)
+               })
     })
   } else {
     message("No R source files found in R/ directory")
