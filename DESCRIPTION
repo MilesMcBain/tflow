@@ -17,7 +17,8 @@ Imports:
     readr,
     cli,
     rstudioapi,
-    sourcetools
+    sourcetools,
+    atcursor (>= 0.0.1)
 Suggests: 
     conflicted,
     capsule,
@@ -26,7 +27,8 @@ Suggests:
     tarchetypes,
     withr,
     here
-Remotes: 
+Remotes:  
     milesmcbain/fnmate,
-    milesmcbain/capsule
+    milesmcbain/capsule,
+    milesmcbain/atcursor
 RoxygenNote: 7.1.1

@@ -8,3 +8,7 @@ Description: Sources worflow files. Package startup messages are suppressed, fai
 Binding: tflow_load_all
 Interactive: false
 
+Name: Make target at cursor
+Description: Run tar_make(., shorcut = TRUE) with object at cursor or selection
+Binding: rs_make_target_at_cursor
+Interactive: false

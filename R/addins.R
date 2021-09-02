@@ -51,3 +51,12 @@ tflow_load_all <- function() {
     message("No R source files found in R/ directory")
   }
 }
+
+#' @noRd
+#' @export
+rs_make_target_at_cursor <- function() {
+  word_or_selection <- atcursor::get_word_or_selection()
+  command <- bquote(targets::tar_make(.(as.symbol(word_or_selection)), shortcut = TRUE))
+  cat(format(command), "\n", sep = "")
+  eval(command)
+}
