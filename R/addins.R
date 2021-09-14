@@ -41,7 +41,7 @@ tflow_load_all <- function() {
   }
   if(dir.exists("R") && length(list.files("R", pattern = "\\.[Rr]$"))) {
     lapply(list.files("R", pattern = "\\.[Rr]$", full.names = TRUE), function(f) {
-      tryCatch(source(f),
+      tryCatch(source(f, verbose = FALSE),
                error = function(e) {
                  e$message <- paste0("Error in ", f, ": ", e$message)
                  message(e)
@@ -50,9 +50,11 @@ tflow_load_all <- function() {
   } else {
     message("No R source files found in R/ directory")
   }
+  invisible()
 }
 
 #' @noRd
+#' 
 #' @export
 rs_make_target_at_cursor <- function() {
   word_or_selection <- atcursor::get_word_or_selection()
