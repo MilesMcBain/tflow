@@ -2,6 +2,7 @@
 
 export(rs_load_current_editor_targets)
 export(rs_make_target_at_cursor)
+export(rs_make_target_at_cursor_shortcut)
 export(tflow_load_all)
 export(use_gitignore)
 export(use_rmd)

@@ -56,9 +56,16 @@ tflow_load_all <- function() {
 #' @noRd
 #' 
 #' @export
-rs_make_target_at_cursor <- function() {
+rs_make_target_at_cursor <- function(shortcut = FALSE) {
   word_or_selection <- atcursor::get_word_or_selection()
-  command <- bquote(targets::tar_make(.(as.symbol(word_or_selection)), shortcut = TRUE))
+  command <- bquote(targets::tar_make(.(as.symbol(word_or_selection)), shortcut = shortcut))
   cat(format(command), "\n", sep = "")
   eval(command)
+}
+
+#' @noRd
+#' 
+#' @export
+rs_make_target_at_cursor_shortcut <- function() {
+  rs_make_target_at_cursor(shortcut = TRUE)
 }
