@@ -58,9 +58,9 @@ tflow_load_all <- function() {
 #' @noRd
 #'
 #' @export
-rs_make_target_at_cursor <- function() {
+rs_make_target_at_cursor <- function(shortcut = FALSE) {
   word_or_selection <- atcursor::get_word_or_selection()
-  command <- bquote(targets::tar_make(.(as.symbol(word_or_selection)), shortcut = TRUE))
+  command <- bquote(targets::tar_make(.(as.symbol(word_or_selection)), shortcut = shortcut))
   cat_commnd(command)
   eval(command)
 }
@@ -89,6 +89,8 @@ rs_tar_make_current_plan <- function() {
   eval(make_command)
 }
 
+#' @export
+#' @noRd 
 rs_load_target_at_cursor_from_any_plan <- function() {
   if (!file.exists("_targets.yaml")) {
     return(targets:::tar_rstudio_addin_load())
@@ -115,6 +117,12 @@ rs_load_target_at_cursor_from_any_plan <- function() {
   }
   # if we got here we didn't find any matching targets in any stores
   stop("{tflow} couldn't find ", selected_target, " in any of the stores in _targets.yaml")
+}
+
+#' 
+#' @export
+rs_make_target_at_cursor_shortcut <- function() {
+  rs_make_target_at_cursor(shortcut = TRUE)
 }
 
 parse_targets_yaml <- function() {
