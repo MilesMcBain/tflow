@@ -12,3 +12,13 @@ Name: Make target at cursor
 Description: Run tar_make(., shorcut = TRUE) with object at cursor or selection
 Binding: rs_make_target_at_cursor
 Interactive: false
+
+Name: Load target at cursor from any store
+Description: adds multi-plan/multi-store support to the {targets} load at cursor addin (using _targets.yml).
+Binding: rs_load_target_at_cursor_from_any_plan
+Interactive: false
+
+Name: tar_make() current active editor plan
+Description: Run the current plan file against it's configured store in _targets.yml.
+Binding: rs_tar_make_current_plan
+Interactive: false
