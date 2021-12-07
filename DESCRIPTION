@@ -20,7 +20,8 @@ Imports:
     sourcetools,
     atcursor (>= 0.0.1),
     fs,
-    yaml
+    yaml,
+    withr
 Suggests: 
     conflicted,
     capsule,

@@ -1,5 +1,5 @@
 Name: Load editor targets
-Description: tar_load() targets referred to in current editor from cache 
+Description: tar_load() targets referred to in current editor from cache
 Binding: rs_load_current_editor_targets
 Interactive: false
 
@@ -27,3 +27,10 @@ Name: Make target at cursor with shortcut
 Description: Run tar_make(., shorcut = TRUE) with object at cursor or selection
 Binding: rs_make_target_at_cursor_shortcut
 Interactive: false
+
+Name: Run a targets pipeline with debugging
+Description: Runs `with_options(c(error = recover), tar_make(callr_function = NULL))`
+Binding: make_with_recover
+Interactive: false
+
+

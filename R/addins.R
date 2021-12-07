@@ -90,7 +90,7 @@ rs_tar_make_current_plan <- function() {
 }
 
 #' @export
-#' @noRd 
+#' @noRd
 rs_load_target_at_cursor_from_any_plan <- function() {
   if (!file.exists("_targets.yaml")) {
     return(targets:::tar_rstudio_addin_load())
@@ -119,7 +119,7 @@ rs_load_target_at_cursor_from_any_plan <- function() {
   stop("{tflow} couldn't find ", selected_target, " in any of the stores in _targets.yaml")
 }
 
-#' 
+#'
 #' @export
 rs_make_target_at_cursor_shortcut <- function() {
   rs_make_target_at_cursor(shortcut = TRUE)
@@ -133,3 +133,6 @@ parse_targets_yaml <- function() {
 
 cat_command <- function(command) cat(format(command), "\n", sep = "")
 
+make_with_recover <- function() {
+  withr::with_options(c(error = recover), targets::tar_make(callr_function = NULL))
+}
