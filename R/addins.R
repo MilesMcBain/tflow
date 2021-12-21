@@ -126,9 +126,9 @@ rs_make_target_at_cursor_shortcut <- function() {
 }
 
 parse_targets_yaml <- function() {
-  project_yaml <- yaml::read_yaml("../interactive_location_analytics/_targets.yaml")
+  project_yaml <- yaml::read_yaml("./_targets.yaml")
   do.call(rbind,
-    lapply(function(x) data.frame(script = x$script, store = x$store)))
+    lapply(project_yaml, function(x) data.frame(script = x$script, store = x$store)))
 }
 
 cat_command <- function(command) cat(format(command), "\n", sep = "")
