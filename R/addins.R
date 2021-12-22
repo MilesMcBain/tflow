@@ -93,7 +93,7 @@ rs_tar_make_current_plan <- function() {
 #' @noRd 
 rs_load_target_at_cursor_from_any_plan <- function() {
   if (!file.exists("_targets.yaml")) {
-    return(targets:::tar_rstudio_addin_load())
+    return(targets::rstudio_addin_tar_load())
   }
   selected_target <- atcursor::get_word_or_selection()
   yaml_file <- parse_targets_yaml()
