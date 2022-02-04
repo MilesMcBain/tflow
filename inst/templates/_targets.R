@@ -1,8 +1,8 @@
 ## Load your packages, e.g. library(targets).
-source(here::here("./packages.R"))
+source("./packages.R")
 
 ## Load your R files
-lapply(list.files(here::here("./R"), full.names = TRUE), source)
+lapply(list.files("./R", full.names = TRUE), source)
 
 ## tar_plan supports drake-style targets and also tar_target()
 tar_plan(
