@@ -8,7 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ## target knits Rmds in their own session, so load libraries here.
-## source("here::here(packages.R"))
+## source(here::here("packages.R"))
+## if you want access to the functions you've written
+## lapply(list.files(here::here("./R"), full.names = TRUE), source)
 ```
 
 ```{r load-targets, include=FALSE}
