@@ -28,6 +28,23 @@ rmd_target <- function(target_name) {
   )
 }
 
+##' Generate a target for a Quarto file
+##'
+##' @title qmd_target
+##' @param target_name of a target to generate qmd target for.
+##' @return target text to the console.
+##' @author Robert M Flight
+qmd_target <- function(target_name) {
+
+  report_dir <- getOption('tflow.report_dir') %||% "doc"
+
+  glue::glue("Add this target to your tar_plan():\n",
+             "\n",
+             "tar_quarto({target_name}, \"{file.path(report_dir, paste(target_name, 'qmd', sep = '.'))}\")\n"
+  )
+}
+
+
 ##' Create an RMarkdown file and generate target definition code.
 ##'
 ##' The generated document defaults to the "./doc" folder. This can be overridden
@@ -69,6 +86,50 @@ use_rmd <- function(target_name) {
  invisible(file_path)
 
 }
+
+##' Create a Quarto file and generate target definition code.
+##'
+##' The generated document defaults to the "./doc" folder. This can be overridden
+##' with option 'tflow.report_dir'.
+##'
+##' @title use_qmd
+##' @param target_name a name for target and the generated quarto document.
+##' @return the path of the file created. (invisibly)
+##' @export
+##' @author Robert M Flight
+use_qmd <- function(target_name) {
+
+  target_file <- paste0(target_name, ".qmd")
+
+  report_dir <- getOption('tflow.report_dir') %||% "doc"
+  file_path <- file.path(report_dir, target_file)
+
+  if (file.exists(file_path)) {
+    message(file_path, " already exists and was not overwritten.")
+    message(rmd_target(target_name))
+    return(invisible(file_path))
+  }
+
+  if (!dir.exists(report_dir)) usethis::use_directory(report_dir)
+
+  usethis::use_template("blank.qmd",
+                        save_as = file_path,
+                        package = "tflow")
+
+  message(qmd_target(target_name))
+
+  if (file.exists("./packages.R") && !contains_quarto("./packages.R")) {
+    packages <- readr::read_lines("./packages.R")
+    packages <- c(packages, "library(quarto)")
+    readr::write_lines(packages, "./packages.R")
+    message(cli::symbol$tick," Writing 'library(quarto)' to './packages.R'")
+  }
+
+
+  invisible(file_path)
+
+}
+
 
 ##' Use a starter .gitignore
 ##'
