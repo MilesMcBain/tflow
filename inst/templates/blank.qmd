@@ -1,0 +1,57 @@
+---
+title: "Untitled Draft"
+author: "Report Author"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format: html
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = FALSE)
+## target knits qmds in their own session, so load libraries here.
+## source(here::here("packages.R"))
+## if you want access to the functions you've written
+## lapply(list.files(here::here("./R"), full.names = TRUE), source)
+```
+
+```{r}
+#| label: load-targets
+#| include: false
+# tar_load(c(target_1, target_2, target_3))
+
+# # If your chunk output is shown in-line, then you'll need to wrap tar_load()
+# # like so:
+# 
+# withr::with_dir(here::here(), {
+#   tar_load(c(target_1, target_2, target_3))
+# })
+# 
+# # This is not needed when using tar_make() to render the document.
+```
+
+## Analysis
+
+## Reproducibility
+
+<details><summary>Reproducibility receipt</summary>
+
+```{r}
+## datetime
+Sys.time()
+
+## repository
+if(requireNamespace('git2r', quietly = TRUE)) {
+  git2r::repository()
+} else {
+  c(
+    system2("git", args = c("log", "--name-status", "-1"), stdout = TRUE),
+    system2("git", args = c("remote", "-v"), stdout = TRUE)
+  )
+}
+
+## session info
+sessionInfo()
+```
+
+</details>
