@@ -10,7 +10,7 @@ A sibling of [dflow](https://github.com/milesmcbain/dflow)
 remotes::install_github("milesmcbain/tflow")
 ```
 
-Set `dependencies = TRUE` to also install [capsule](https://github.com/MilesMcBain/capsule), [conflicted](https://github.com/r-lib/conflicted), [dotenv](https://github.com/gaborcsardi/dotenv), [targets](https://docs.ropensci.org/drake), and [tarchetypes](https://github.com/ropensci/tarchetypes).
+Set `dependencies = TRUE` to also install [capsule](https://github.com/MilesMcBain/capsule), [conflicted](https://github.com/r-lib/conflicted), [dotenv](https://github.com/gaborcsardi/dotenv), [targets](https://docs.ropensci.org/targets/), and [tarchetypes](https://github.com/ropensci/tarchetypes).
 
 ## Usage
 
@@ -31,14 +31,14 @@ Set `dependencies = TRUE` to also install [capsule](https://github.com/MilesMcBa
 √ Writing 'doc/analysis.Rmd'
 Add this target to your tar_plan():
 
-tar_render(report, "doc/analysis..Rmd")
+tar_render(report, "doc/analysis.Rmd")
 
 √ library(rmarkdown) added to ./packages.R
 ```
 
 `tflow::use_gitignore()`:
 
-Drop in a starter `./.gitignore` with ignores for `drake` and `renv` among others.
+Drop in a starter `./.gitignore` with ignores for `targets` and `renv` among others.
 
 
 ## About
