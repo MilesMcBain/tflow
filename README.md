@@ -10,7 +10,7 @@ A sibling of [dflow](https://github.com/milesmcbain/dflow)
 remotes::install_github("milesmcbain/tflow")
 ```
 
-Set `dependencies = TRUE` to also install [capsule](https://github.com/MilesMcBain/capsule), [conflicted](https://github.com/r-lib/conflicted), [dontenv](https://github.com/gaborcsardi/dotenv), [targets](https://docs.ropensci.org/drake), and [tarchetypes](https://github.com/ropensci/tarchetypes).
+Set `dependencies = TRUE` to also install [capsule](https://github.com/MilesMcBain/capsule), [conflicted](https://github.com/r-lib/conflicted), [dotenv](https://github.com/gaborcsardi/dotenv), [targets](https://docs.ropensci.org/drake), and [tarchetypes](https://github.com/ropensci/tarchetypes).
 
 ## Usage
 
@@ -56,7 +56,7 @@ development. To get the most out of it follow these tips:
 2. Use a call `tar_make()` to kick off building your plan in a new R session.
   
 3. Put all your `library()` calls into `packages.R`. This way you'll have them
-   in one place when you go to add sandboxing with `renv`, `packarat`, and
+   in one place when you go to add sandboxing with `renv`, `packrat`, and
    `switchr` etc.
 
 4. Take advantage of automation for loading `targets` targets at the cursor with the 'load target at cursor' addin. Or the `tflow` addin: 'load editor targets' to load all targets referred to in the current editor.
