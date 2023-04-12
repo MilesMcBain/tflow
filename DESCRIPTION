@@ -1,6 +1,6 @@
 Package: tflow
 Title: Setup a project in the tflow style for using the targets package
-Version: 0.3.7
+Version: 0.3.8
 Authors@R: c(
    person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre")),
    person("Shir", "Dekel", email = "shirdekel@yahoo.com.au", role = "ctb"),
@@ -11,7 +11,7 @@ Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Imports:
     usethis,
     fnmate,
     glue,
@@ -22,7 +22,7 @@ Imports:
     atcursor (>= 0.0.1),
     fs,
     yaml
-Suggests: 
+Suggests:
     conflicted,
     capsule,
     dotenv,
@@ -30,8 +30,8 @@ Suggests:
     tarchetypes,
     withr,
     here
-Remotes: 
+Remotes:
     milesmcbain/fnmate,
     milesmcbain/capsule,
     milesmcbain/atcursor
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3

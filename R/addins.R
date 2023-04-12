@@ -66,6 +66,27 @@ rs_make_target_at_cursor <- function(shortcut = FALSE) {
 }
 
 #' @noRd
+#'
+#' @export
+rs_make_target_at_cursor_in_current_plan <- function(shortcut = FALSE) {
+
+  if (!file.exists("_targets.yaml")) {
+    return(rs_make_target_at_cursor(shortcut))
+  }
+
+  word_or_selection <- as.symbol(atcursor::get_word_or_selection())
+  yaml_entry <-
+    current_plan_yaml_entry()
+
+  make_command <- bquote(
+    targets::tar_make(.(word_or_selection), script = .(yaml_entry$script), store = .(yaml_entry$store))
+  )
+  cat_command(make_command)
+  eval(make_command)
+
+}
+
+#' @noRd
 #' @export
 rs_tar_make_current_plan <- function() {
 
@@ -75,14 +96,8 @@ rs_tar_make_current_plan <- function() {
     return()
   }
 
-  yaml_file <- parse_targets_yaml()
-  current_file <- fs::path_file(rstudioapi::getActiveDocumentContext()$path)
-
   yaml_entry <-
-    yaml_file[yaml_file$script == current_file, ]
-
-  if (nrow(yaml_entry) == 0) stop("{tflow} could't find an entry for current active source file in _targets.yaml")
-  if (nrow(yaml_entry) > 1) stop("{tflow} found more than one entry in _targets.yaml matching the current active source file")
+    current_plan_yaml_entry()
 
   make_command <- bquote(targets::tar_make(script = .(yaml_entry$script), store = .(yaml_entry$store)))
   cat_command(make_command)
@@ -90,7 +105,7 @@ rs_tar_make_current_plan <- function() {
 }
 
 #' @export
-#' @noRd 
+#' @noRd
 rs_load_target_at_cursor_from_any_plan <- function() {
   if (!file.exists("_targets.yaml")) {
     return(targets::rstudio_addin_tar_load())
@@ -119,17 +134,9 @@ rs_load_target_at_cursor_from_any_plan <- function() {
   stop("{tflow} couldn't find ", selected_target, " in any of the stores in _targets.yaml")
 }
 
-#' 
+#'
 #' @export
 rs_make_target_at_cursor_shortcut <- function() {
   rs_make_target_at_cursor(shortcut = TRUE)
 }
-
-parse_targets_yaml <- function() {
-  project_yaml <- yaml::read_yaml("./_targets.yaml")
-  do.call(rbind,
-    lapply(project_yaml, function(x) data.frame(script = x$script, store = x$store)))
-}
-
-cat_command <- function(command) cat(format(command), "\n", sep = "")
 

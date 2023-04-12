@@ -15,3 +15,24 @@ contains_quarto <- function(filepath) {
   any(grepl("^library\\(quarto\\)", libs_file_lines))
 
 }
+
+current_plan_yaml_entry <- function() {
+  yaml_file <- parse_targets_yaml()
+  current_file <- fs::path_file(rstudioapi::getActiveDocumentContext()$path)
+
+  yaml_entry <-
+    yaml_file[yaml_file$script == current_file, ]
+
+  if (nrow(yaml_entry) == 0) stop("{tflow} could't find an entry for current active source file in _targets.yaml")
+  if (nrow(yaml_entry) > 1) stop("{tflow} found more than one entry in _targets.yaml matching the current active source file")
+
+  yaml_entry
+}
+
+parse_targets_yaml <- function() {
+  project_yaml <- yaml::read_yaml("./_targets.yaml")
+  do.call(rbind,
+    lapply(project_yaml, function(x) data.frame(script = x$script, store = x$store)))
+}
+
+cat_command <- function(command) cat(trimws(format(command)), "\n", sep = "")
