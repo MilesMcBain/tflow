@@ -5,7 +5,7 @@ Authors@R: c(
    person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre")),
    person("Shir", "Dekel", email = "shirdekel@yahoo.com.au", role = "ctb"),
    person("Noam", "Ross", email = "NA@example.com", role = "aut", comment = c(ORCID='0000-0002-2136-0000')),
-   person("Robert", "M", "Flight", email = "rflight79@gmail.com", role = "ctb", comment = c('0000-0001-8141-7788')))
+   person(given = c("Robert", "M"), family = "Flight", email = "rflight79@gmail.com", role = "ctb", comment = c(ORCID='0000-0001-8141-7788')))
 Description: Has a function that sets up an R workflow in the dflow style, using targets.
 Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
