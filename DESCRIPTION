@@ -1,6 +1,6 @@
 Package: tflow
 Title: Setup a project in the tflow style for using the targets package
-Version: 0.3.9
+Version: 0.3.10
 Authors@R: c(
    person("Miles", "McBain", email = "miles.mcbain@gmail.com", role = c("aut", "cre")),
    person("Shir", "Dekel", email = "shirdekel@yahoo.com.au", role = "ctb"),

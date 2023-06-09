@@ -1,5 +1,5 @@
 Name: Load editor targets
-Description: tar_load() targets referred to in current editor from cache 
+Description: tar_load() targets referred to in current editor from cache
 Binding: rs_load_current_editor_targets
 Interactive: false
 
@@ -26,4 +26,19 @@ Interactive: false
 Name: Make target at cursor with shortcut
 Description: Run tar_make(., shorcut = TRUE) with object at cursor or selection
 Binding: rs_make_target_at_cursor_shortcut
+Interactive: false
+
+Name: Invalidate target at cursor
+Description: Run tar_invalidate(.) with the object at cursor or selection
+Binding: rs_invalidate_target_at_cursor
+Interactive: false
+
+Name: Make target at cursor in current plan
+Description: In a multi-plan project, make the target at the cursor in the current plan using the configured store in `_targets.yaml`.
+Binding: rs_make_target_at_cursor_in_current_plan
+Interactive: false
+
+Name: Invalidate target at cursor in current plan
+Description: In a multi-plan project, invalidate the target at the cursor in the current plan's store configured in `_targets.yaml`.
+Binding: rs_invalidate_target_at_cursor_in_current_plan
 Interactive: false

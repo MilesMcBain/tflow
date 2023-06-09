@@ -65,6 +65,16 @@ rs_make_target_at_cursor <- function(shortcut = FALSE) {
   eval(command)
 }
 
+#' @export
+#'
+#' @export
+rs_invalidate_target_at_cursor <- function() {
+  word_or_selection <- atcursor::get_word_or_selection()
+  command <- bquote(targets::tar_invalidate(.(as.symbol(word_or_selection))))
+  cat_command(command)
+  eval(command)
+}
+
 #' @noRd
 #'
 #' @export
@@ -80,6 +90,26 @@ rs_make_target_at_cursor_in_current_plan <- function(shortcut = FALSE) {
 
   make_command <- bquote(
     targets::tar_make(.(word_or_selection), script = .(yaml_entry$script), store = .(yaml_entry$store))
+  )
+  cat_command(make_command)
+  eval(make_command)
+
+}
+
+#' @noRd
+#'
+#' @export
+rs_invalidate_target_at_cursor_in_current_plan <- function() {
+
+  if (!file.exists("_targets.yaml")) {
+    return(rs_invalidate_at_cursor(shortcut))
+  }
+  word_or_selection <- as.symbol(atcursor::get_word_or_selection())
+  yaml_entry <-
+    current_plan_yaml_entry()
+
+  make_command <- bquote(
+    targets::tar_invalidate(.(word_or_selection), store = .(yaml_entry$store))
   )
   cat_command(make_command)
   eval(make_command)
@@ -134,7 +164,10 @@ rs_load_target_at_cursor_from_any_plan <- function() {
   stop("{tflow} couldn't find ", selected_target, " in any of the stores in _targets.yaml")
 }
 
-#'
+# TODO rs_load_target_at_cursor_from_current_plan
+
+
+#' @noRd
 #' @export
 rs_make_target_at_cursor_shortcut <- function() {
   rs_make_target_at_cursor(shortcut = TRUE)
