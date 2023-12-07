@@ -102,7 +102,7 @@ rs_make_target_at_cursor_in_current_plan <- function(shortcut = FALSE) {
 rs_invalidate_target_at_cursor_in_current_plan <- function() {
 
   if (!file.exists("_targets.yaml")) {
-    return(rs_invalidate_at_cursor(shortcut))
+    return(rs_invalidate_at_cursor())
   }
   word_or_selection <- as.symbol(atcursor::get_word_or_selection())
   yaml_entry <-
@@ -141,8 +141,18 @@ rs_load_target_at_cursor_from_any_plan <- function() {
     return(targets::rstudio_addin_tar_load())
   }
   selected_target <- atcursor::get_word_or_selection()
-  yaml_file <- parse_targets_yaml()
+  current_script <- rstudioapi::getActiveDocumentContext()$path
+  yaml_file <- tflow:::parse_targets_yaml()
   eval_env <- parent.frame()
+
+  # let's look at the entry for the current script first, if it exists
+  current_plan_entry <-
+    fs::path_real(yaml_file$script) == fs::path_real(current_script)
+  # if we got it, move it to top of list
+  if (any(current_plan_entry)) {
+    yaml_file <- rbind(yaml_file[current_plan_entry, ], yaml_file[!current_plan_entry, ])
+  }
+
   for (row in seq(nrow(yaml_file))) {
     yaml_entry <- yaml_file[row, ]
     current_meta <- tryCatch(
@@ -173,3 +183,23 @@ rs_make_target_at_cursor_shortcut <- function() {
   rs_make_target_at_cursor(shortcut = TRUE)
 }
 
+
+#' @noRd
+#'
+#' @export
+rs_workspace_at_cursor_in_current_plan <- function() {
+
+  if (!file.exists("_targets.yaml")) {
+    return(rs_invalidate_at_cursor())
+  }
+  word_or_selection <- as.symbol(atcursor::get_word_or_selection())
+  yaml_entry <-
+    current_plan_yaml_entry()
+
+  make_command <- bquote(
+    targets::tar_invalidate(.(word_or_selection), store = .(yaml_entry$store))
+  )
+  cat_command(make_command)
+  eval(make_command)
+
+}
