@@ -102,7 +102,7 @@ rs_make_target_at_cursor_in_current_plan <- function(shortcut = FALSE) {
 rs_invalidate_target_at_cursor_in_current_plan <- function() {
 
   if (!file.exists("_targets.yaml")) {
-    return(rs_invalidate_at_cursor())
+    return(rs_invalidate_target_at_cursor())
   }
   word_or_selection <- as.symbol(atcursor::get_word_or_selection())
   yaml_entry <-
